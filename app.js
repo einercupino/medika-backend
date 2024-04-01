@@ -63,6 +63,14 @@ const RootQuery = new GraphQLObjectType({
                 return await User.find();
             }
         },
+        userByEmail: {
+            type: UserType,
+            description: 'Get a user by their email',
+            args: { email: { type: GraphQLNonNull(GraphQLString) } },
+            resolve: async (parent, { email }) => {
+                return await User.findOne({ email: email });
+            }
+        },
         vitalSign: {
             type: VitalSignType,
             description: 'A single vital sign record',
@@ -174,11 +182,18 @@ const schema = new GraphQLSchema({
     mutation: RootMutation
 });
 
+// CORS configuration
+const corsOptions = {
+    origin: 'http://localhost:5173', // Your frontend origin
+    credentials: true, // This allows session cookies to be sent back and forth
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,
