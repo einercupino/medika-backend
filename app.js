@@ -184,7 +184,7 @@ const schema = new GraphQLSchema({
 
 // CORS configuration
 const corsOptions = {
-    origin: 'http://localhost:5173', // Your frontend origin
+    origin: process.env.CORS_ORIGIN,  // Your frontend origin
     credentials: true, // This allows session cookies to be sent back and forth
 };
 
