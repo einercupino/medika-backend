@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 const VitalSign = require('./models/vitalsign')
 const { graphqlHTTP } = require('express-graphql')
 const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLList, GraphQLNonNull, GraphQLID, GraphQLFloat } = require('graphql')
+const { trainAndPredict } = require('./tensorflow/predict');
 
 const cors = require('cors');
 const User = require('./models/user');
@@ -199,5 +200,7 @@ app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true, // Set to false if in production
 }));
+
+app.post('/predict', trainAndPredict);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

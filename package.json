@@ -10,10 +10,12 @@
   "author": "Einer Cupino",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow/tfjs": "^4.17.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-graphql": "^0.12.0",
