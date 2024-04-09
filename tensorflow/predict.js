@@ -85,7 +85,7 @@ const createModel = () => {
 const trainModel = async (model, trainData) => {
     const inputs = tf.tensor2d(trainData.map(d => d.features));
     const labels = tf.tensor2d(trainData.map(d => d.labels));
-    return await model.fit(inputs, labels, { epochs: 1, validationSplit: 0.2 });
+    return await model.fit(inputs, labels, { epochs: 250, validationSplit: 0.2 });
 };
 
 const evaluateModel = (model, testData) => {
